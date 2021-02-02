@@ -1,8 +1,8 @@
-ARG NGINX_VER=1.19.3
+ARG NGINX_VER=1.19.6
 
 FROM nginx:${NGINX_VER}-alpine as build_modsecurity
 
-ARG GEO_DB_RELEASE=2020-10
+ARG GEO_DB_RELEASE=2021-01
 ARG MODSEC_BRANCH=v3.0.4
 ARG OWASP_BRANCH=v3.3/master
 
@@ -75,7 +75,7 @@ RUN echo 'Installing Nginx Modules' && \
 
 FROM nginx:${NGINX_VER}-alpine
 
-LABEL maintainer="Andrew Kimball"
+LABEL maintainer="Florian Fuessl"
 
 # Copy nginx, owasp-modsecurity-crs, and modsecurity from the build image
 COPY --from=build_modsecurity /etc/nginx/ /etc/nginx/
